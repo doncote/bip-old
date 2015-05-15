@@ -11,6 +11,9 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'friendly_id'
 gem 'settingslogic'
+gem 'activeadmin', github: 'activeadmin'
+gem 'devise'
+gem 'cancancan'
 
 
 group :local, :test do
