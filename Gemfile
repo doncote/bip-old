@@ -15,7 +15,7 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 gem 'cancancan'
 gem 'country_select', github: 'stefanpenner/country_select'
-
+gem 'acts-as-taggable-on'
 
 group :local, :test do
   gem 'factory_girl_rails'

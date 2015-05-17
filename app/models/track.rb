@@ -1,5 +1,7 @@
 class Track < ActiveRecord::Base
 
+  acts_as_taggable
+
   belongs_to :song
   belongs_to :show
 
