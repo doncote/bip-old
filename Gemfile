@@ -34,6 +34,7 @@ end
 group :test do
   gem 'faker'
   gem 'shoulda'
+  gem 'shoulda-matchers'
   gem 'guard'
   gem 'guard-rspec'
   gem 'timecop'
