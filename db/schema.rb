@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517203311) do
+ActiveRecord::Schema.define(version: 20150517221549) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -28,6 +28,13 @@ ActiveRecord::Schema.define(version: 20150517203311) do
   add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
+  create_table "annotations", force: :cascade do |t|
+    t.integer  "track_id"
+    t.text     "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "authors", force: :cascade do |t|
     t.string   "name"
     t.string   "slug"
@@ -37,6 +44,16 @@ ActiveRecord::Schema.define(version: 20150517203311) do
 
   add_index "authors", ["slug"], name: "index_authors_on_slug"
 
+  create_table "bands", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.integer  "legacy_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "bands", ["slug"], name: "index_bands_on_slug"
+
   create_table "shows", force: :cascade do |t|
     t.integer  "venue_id"
     t.datetime "date"
@@ -44,8 +61,11 @@ ActiveRecord::Schema.define(version: 20150517203311) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "legacy_id"
+    t.text     "notes"
+    t.integer  "band_id"
   end
 
+  add_index "shows", ["band_id"], name: "index_shows_on_band_id"
   add_index "shows", ["slug"], name: "index_shows_on_slug"
 
   create_table "songs", force: :cascade do |t|

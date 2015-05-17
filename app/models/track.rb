@@ -1,10 +1,9 @@
 class Track < ActiveRecord::Base
 
-  acts_as_taggable
-
   belongs_to :song
   belongs_to :show
+  has_many :annotations, dependent: :destroy
 
-  validates :song, :show, :position, :set, presence: true
+  validates :song, :show, :position, presence: true
 
 end
