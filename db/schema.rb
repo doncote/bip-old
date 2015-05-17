@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515213950) do
+ActiveRecord::Schema.define(version: 20150517183745) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
@@ -37,16 +37,41 @@ ActiveRecord::Schema.define(version: 20150515213950) do
 
   add_index "authors", ["slug"], name: "index_authors_on_slug"
 
-  create_table "songs", force: :cascade do |t|
-    t.integer  "author_id"
-    t.string   "title"
+  create_table "shows", force: :cascade do |t|
+    t.integer  "venue_id"
+    t.datetime "date"
     t.string   "slug"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "shows", ["slug"], name: "index_shows_on_slug"
+
+  create_table "songs", force: :cascade do |t|
+    t.integer  "author_id"
+    t.string   "title"
+    t.string   "slug"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.text     "lyrics"
+    t.text     "tabs"
+    t.text     "notes"
+    t.string   "legacy_abbr"
+    t.integer  "legacy_id"
+  end
+
   add_index "songs", ["author_id"], name: "index_songs_on_author_id"
   add_index "songs", ["slug"], name: "index_songs_on_slug"
+
+  create_table "tracks", force: :cascade do |t|
+    t.integer  "show_id"
+    t.integer  "song_id"
+    t.integer  "set"
+    t.integer  "position"
+    t.boolean  "segue",      default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -65,5 +90,23 @@ ActiveRecord::Schema.define(version: 20150515213950) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+
+  create_table "venues", force: :cascade do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country"
+    t.string   "postal_code"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "phone"
+    t.string   "website"
+  end
+
+  add_index "venues", ["slug"], name: "index_venues_on_slug"
 
 end

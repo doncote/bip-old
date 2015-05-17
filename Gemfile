@@ -14,6 +14,7 @@ gem 'settingslogic'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 gem 'cancancan'
+gem 'country_select', github: 'stefanpenner/country_select'
 
 
 group :local, :test do
