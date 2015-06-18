@@ -4,6 +4,8 @@ class Venue < ActiveRecord::Base
 
   validates :name, :slug, presence: true
 
+  has_many :shows
+
   def slug_candidates
     [
       :name,

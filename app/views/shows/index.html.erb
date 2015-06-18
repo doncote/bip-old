@@ -1,0 +1,6 @@
+
+<% if params[:year] %>
+  <h1><%= params[:year].to_i %></h1>
+<% end %>
+
+<%= render partial: 'list', locals: { shows: @shows } %>

@@ -15,10 +15,14 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
 gem 'cancancan'
 gem 'country_select', github: 'stefanpenner/country_select'
+gem 'twitter-bootstrap-rails'
+gem 'mp3info'
+gem 'stamp'
 
 group :local do
   gem 'rake-progressbar'
   gem 'bower-rails'
+  gem 'angular-rails-templates'
 end
 
 group :local, :test do

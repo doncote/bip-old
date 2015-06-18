@@ -1,0 +1,23 @@
+<h1><%= @song.title %></h1>
+<% if @song.author.present? %>
+  <h3><%= @song.author.name %></h3>
+<% end %>
+
+<p>Played <%= @song.times_played %> times, last at <%= @song.last_show_played.venue.name %> on <%= link_to @song.last_show_played.date.stamp("January 5th, 2001"), show_path(@song.last_show_played) %>.</p>
+
+<ul class="nav nav-tabs" role="tablist">
+  <li role="presentation" class="active"><a href="#shows" aria-controls="shows" role="tab" data-toggle="tab">Shows</a></li>
+  <li role="presentation"><a href="#lyrics" aria-controls="lyrics" role="tab" data-toggle="tab">Lyrics</a></li>
+  <li role="presentation"><a href="#guitar-tabs" aria-controls="guitar-tabs" role="tab" data-toggle="tab">Guitar Tabs</a></li>
+</ul>
+
+<div class="tab-content">
+  <div role="tabpanel" class="tab-pane active" id="shows">
+    <% @song.shows.each do |show| %>
+      <li><%= link_to "#{show.date.stamp("12/5/2001")} - #{show.venue.name}", show_path(show) %></li>
+    <% end %>
+  </div>
+  <div role="tabpanel" class="tab-pane" id="lyrics"><pre><%= @song.lyrics %></pre></div>
+  <div role="tabpanel" class="tab-pane" id="guitar-tabs"><pre><%= @song.tabs %></pre></div>
+</div>
+

@@ -1,6 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  root 'home#index'
+
+  resources :shows, only: [:index, :show] do
+    get "year/:year", on: :collection, action: :index, as: 'year'
+  end
+
+  resources :songs, only: [:index, :show]
+  resources :venues, only: [:index, :show]
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,0 +1,5 @@
+<ul>
+  <% shows.each do |show| %>
+    <li><%= link_to "#{show.date.stamp("12/5/2001")} - #{show.venue.name}", show_path(show) %></li>
+  <% end %>
+</ul>

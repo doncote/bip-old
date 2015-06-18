@@ -1,6 +1,21 @@
 require "csv"
+require "mp3info"
 
 namespace :import do
+
+  task :tracks => :environment do
+
+    dirs = Dir.glob("/Users/don/Music/iTunes/iTunes Media/Music/The Disco Biscuits/*")
+
+    folder = dirs.last
+
+    Dir["#{folder}/*"].each do |fname|
+      Mp3Info.open(fname) do |mp3info|
+        binding.pry
+        puts mp3info
+      end
+    end
+  end
 
   task :songs => :environment do
     Song.destroy_all
@@ -112,9 +127,9 @@ namespace :import do
         end
 
         if set_number < 5
-          track.set = set_number
+          track.set = "S#{set_number.to_s}"
         else
-          track.encore = set_number - 4
+          track.set = "E#{(set_number - 4).to_s}"
         end
         track.show = show
         tracks << track

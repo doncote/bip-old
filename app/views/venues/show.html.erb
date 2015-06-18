@@ -1,0 +1,12 @@
+<h1><%= @venue.name %></h1>
+
+<h4>Played <%= @venue.shows.count %> times, most recently on <%= link_to @venue.shows.last_played.date.stamp("January, 20, 2011"), show_path(@venue.shows.last_played) %></h4>
+
+<p>
+  <%= @venue.street %><br />
+  <%= @venue.city %><br />
+  <%= @venue.state %>
+</p>
+
+<%= render partial: 'shows/list', locals: { shows: @venue.shows } %>
+
