@@ -9,7 +9,7 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
-gem 'friendly_id'
+gem 'friendly_id', github: 'doncote/friendly_id', branch: 'master'
 gem 'settingslogic'
 gem 'activeadmin', github: 'activeadmin'
 gem 'devise'
@@ -21,8 +21,6 @@ gem 'stamp'
 
 group :local do
   gem 'rake-progressbar'
-  gem 'bower-rails'
-  gem 'angular-rails-templates'
 end
 
 group :local, :test do

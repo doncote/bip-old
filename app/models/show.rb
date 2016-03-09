@@ -1,6 +1,6 @@
 class Show < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :date, use: [:slugged, :finders]
+  friendly_id :date, use: [:sequentially_slugged, :finders]
 
   belongs_to :venue
   belongs_to :band

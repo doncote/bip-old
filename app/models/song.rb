@@ -1,6 +1,6 @@
 class Song < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :title, use: [:slugged, :finders]
+  friendly_id :title, use: [:sequentially_slugged, :finders]
 
   validates :title, :author, :slug, presence: true
 

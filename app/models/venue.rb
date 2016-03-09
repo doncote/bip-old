@@ -1,6 +1,6 @@
 class Venue < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :slug_candidates, use: [:slugged, :finders]
+  friendly_id :slug_candidates, use: [:sequentially_slugged, :finders]
 
   validates :name, :slug, presence: true
 
