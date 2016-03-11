@@ -1,0 +1,39 @@
+<div class="well">
+  <h3><%= link_to show.date.stamp("5/5/2001"), show_path(show) %> | <%= link_to show.venue.name, venue_path(show.venue) %> <%= show.venue.city %>, <%= show.venue.state %></h3>
+
+  <% annotation_count = 1 %>
+
+  <% show.tracks.group_by { |t| t.set }.each do |set, tracks| %>
+    <div>
+      <%= set %><br />
+      <% tracks.each do |track| %>
+        <%= link_to track.song.title, song_path(track.song) %>
+        <% track.annotations.each do %>
+          <%= "(#{annotation_count})" %>
+          <% annotation_count += 1 %>
+        <% end %>
+        <% if track.segue? %>
+          >
+        <% else %>
+          &nbsp;
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+
+  <br/>
+
+  <em>
+    <% annotation_count = 1 %>
+    <% show.tracks.each do |track| %>
+      <% track.annotations.each do |annotation| %>
+        <%= "(#{annotation_count}) #{annotation.desc}"  %>
+        <% annotation_count += 1 %>
+      <% end %>
+    <% end %>
+  </em>
+
+  <br/>
+
+  <%= show.notes %>
+</div>

@@ -1,6 +1,6 @@
 <h1><%= @venue.name %></h1>
 
-<h4>Played <%= @venue.shows.count %> times, most recently on <%= link_to @venue.shows.last_played.date.stamp("January, 20, 2011"), show_path(@venue.shows.last_played) %></h4>
+<h4>The <%= @band.name %> have played at the <%= @venue.name %> <%= @venue.shows.count %> times.  They last played there <%= time_ago_in_words(@venue.shows.last_played.date) %> ago, on <%= link_to @venue.shows.last_played.date.stamp("January, 20, 2011"), show_path(@venue.shows.last_played) %></h4>
 
 <p>
   <%= @venue.street %><br />

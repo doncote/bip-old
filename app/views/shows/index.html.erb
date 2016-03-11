@@ -1,6 +1,12 @@
 
 <% if params[:year] %>
-  <h1><%= params[:year].to_i %></h1>
+  <% title "Shows from #{params[:year]}" %>
+<% else %>
+  <% title "Recent Shows" %>
 <% end %>
 
-<%= render partial: 'list', locals: { shows: @shows } %>
+<h1><%= yield :title  %></h1>
+
+<% @shows.each do |show| %>
+  <%= render partial: 'shows/show', locals: { show: show } %>
+<% end %>

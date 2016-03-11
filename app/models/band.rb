@@ -1,6 +1,6 @@
 class Band < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, use: :sequentially_slugged
+  friendly_id :name, use: [:sequentially_slugged, :finders]
 
   validates :name, :slug, presence: true
 

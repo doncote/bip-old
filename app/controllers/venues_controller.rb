@@ -11,6 +11,7 @@ class VenuesController < ApplicationController
   end
 
   def show
+    @band = Band.first
     @venue = Venue.includes(:shows).find(params[:id])
 
     respond_to do |format|

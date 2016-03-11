@@ -1,4 +1,7 @@
+<% title "The Disco Biscuits - Songs - #{@song.title}" %>
+
 <h1><%= @song.title %></h1>
+
 <% if @song.author.present? %>
   <h3><%= @song.author.name %></h3>
 <% end %>

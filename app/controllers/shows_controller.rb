@@ -6,7 +6,7 @@ class ShowsController < ApplicationController
     if params[:year]
       @shows = Show.by_year(params[:year].to_i)
     else
-      @shows = Show.order("date desc").limit(5)
+      @shows = Show.order("date desc").last(5)
     end
     respond_to do |format|
       format.json { render json: { shows: @shows } }

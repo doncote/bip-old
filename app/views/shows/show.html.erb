@@ -1,14 +1,4 @@
-<h2><%= @show.date.stamp("5/5/2001") %></h2>
-<h1><%= link_to @show.venue.name, venue_path(@show.venue) %></h1>
 
-<% @show.tracks.group_by { |t| t.set }.each do |set, tracks| %>
+<% title "The Disco Biscuits - #{@show.date.stamp("5/5/2001")} #{@show.venue.name} #{@show.venue.city} #{@show.venue.state}" %>
 
-
-    <div>
-      <%= set %><br />
-      <% tracks.each do |track| %>
-        <%= link_to track.song.title, song_path(track.song) %> <%= ">" if track.segue? %>
-      <% end %>
-    </div>
-
-<% end %>
+<%= render partial: 'show', locals: { show: @show } %>
