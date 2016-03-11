@@ -26,4 +26,7 @@ test:
 
 production:
   <<: *default
-  database: pg
+  adapter: postgresql
+  database: bip
+  pool: 5
+  timeout: 5000
