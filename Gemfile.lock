@@ -297,7 +297,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.3.11)
     stamp (0.6.0)
     terminal-notifier-guard (1.7.0)
     thin (1.6.4)
@@ -362,7 +361,6 @@ DEPENDENCIES
   shoulda-matchers
   spring
   spring-commands-rspec
-  sqlite3
   stamp
   terminal-notifier-guard
   thin
