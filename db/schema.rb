@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150610132320) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_admin_comments", force: :cascade do |t|
     t.string   "namespace"
     t.text     "body"
@@ -24,9 +27,9 @@ ActiveRecord::Schema.define(version: 20150610132320) do
     t.datetime "updated_at"
   end
 
-  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id", using: :btree
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace", using: :btree
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "annotations", force: :cascade do |t|
     t.integer  "track_id"
@@ -42,7 +45,7 @@ ActiveRecord::Schema.define(version: 20150610132320) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "authors", ["slug"], name: "index_authors_on_slug"
+  add_index "authors", ["slug"], name: "index_authors_on_slug", using: :btree
 
   create_table "bands", force: :cascade do |t|
     t.string   "name"
@@ -52,7 +55,7 @@ ActiveRecord::Schema.define(version: 20150610132320) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "bands", ["slug"], name: "index_bands_on_slug"
+  add_index "bands", ["slug"], name: "index_bands_on_slug", using: :btree
 
   create_table "shows", force: :cascade do |t|
     t.integer  "venue_id"
@@ -65,8 +68,8 @@ ActiveRecord::Schema.define(version: 20150610132320) do
     t.integer  "band_id"
   end
 
-  add_index "shows", ["band_id"], name: "index_shows_on_band_id"
-  add_index "shows", ["slug"], name: "index_shows_on_slug"
+  add_index "shows", ["band_id"], name: "index_shows_on_band_id", using: :btree
+  add_index "shows", ["slug"], name: "index_shows_on_slug", using: :btree
 
   create_table "songs", force: :cascade do |t|
     t.integer  "author_id"
@@ -82,9 +85,9 @@ ActiveRecord::Schema.define(version: 20150610132320) do
     t.boolean  "cover",       default: false
   end
 
-  add_index "songs", ["author_id"], name: "index_songs_on_author_id"
-  add_index "songs", ["cover"], name: "index_songs_on_cover"
-  add_index "songs", ["slug"], name: "index_songs_on_slug"
+  add_index "songs", ["author_id"], name: "index_songs_on_author_id", using: :btree
+  add_index "songs", ["cover"], name: "index_songs_on_cover", using: :btree
+  add_index "songs", ["slug"], name: "index_songs_on_slug", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -96,15 +99,14 @@ ActiveRecord::Schema.define(version: 20150610132320) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string  "name"
-    t.integer "taggings_count", default: 0
+    t.string "name"
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "tracks", force: :cascade do |t|
     t.integer  "show_id"
@@ -131,8 +133,8 @@ ActiveRecord::Schema.define(version: 20150610132320) do
     t.datetime "updated_at"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "venues", force: :cascade do |t|
     t.string   "name"
@@ -151,6 +153,6 @@ ActiveRecord::Schema.define(version: 20150610132320) do
     t.integer  "legacy_id"
   end
 
-  add_index "venues", ["slug"], name: "index_venues_on_slug"
+  add_index "venues", ["slug"], name: "index_venues_on_slug", using: :btree
 
 end
